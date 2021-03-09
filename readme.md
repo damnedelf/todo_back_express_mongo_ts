@@ -1,10 +1,11 @@
-## npm start  -  starts server on localhost:5500
+## npm start - starts server on localhost:5500 for front part`s queres
+
+## requires mongo-db running locally
+
 ## todomvc hometask.
 
-### app build using vanillaJS+typescript (front).
+##
 
-### back build using express.
+### app build using nodeJS+typescript.
 
-#### mongoDB used as DB. mongoose as db client
-
-#### packages used - express,nanoid,mongoose,bodyParser and dependencies. i know about err ts/Store.ts:35:41 but cannot fix it
+### used modules express,mongoose,nanoid, types/express.
