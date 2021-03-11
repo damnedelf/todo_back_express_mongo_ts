@@ -2,11 +2,13 @@ import { Request, Response } from "express";
 let express = require("express");
 const router = express.Router();
 const todo = require("../db/models/todo_model");
+//order for front
 let orderN: number;
-
+//new todo===>db
 router.post("/post", async function (req: Request, res: Response) {
+  // any array in db
   let todoArr: todoFromDb[] = await todo.find({});
-
+  //order counter
   if (todoArr.length === 0) {
     orderN = 0;
   } else {
@@ -14,6 +16,7 @@ router.post("/post", async function (req: Request, res: Response) {
     orderN = todoArr[todoArr.length - 1].order;
   }
   orderN++;
+  //new obj for db
   let person = new todo({
     name: req.body.name,
     isCompleted: false,
@@ -29,9 +32,11 @@ router.post("/post", async function (req: Request, res: Response) {
     res.end();
   }
 });
+//get all array for onLoad
 router.get("/getall", async function (req: Request, res: Response) {
   try {
     let todoArr: todoFromDb[] = await todo.find({});
+    //sort by order for front
     todoArr.sort((a, b) => (a.order > b.order ? 1 : -1));
     res.end(JSON.stringify(todoArr));
   } catch (error) {
@@ -39,6 +44,7 @@ router.get("/getall", async function (req: Request, res: Response) {
     res.end();
   }
 });
+//delete todo by id
 router.delete("/delete", async function (req: Request, res: Response) {
   try {
     await todo.findOneAndRemove({ _id: req.body.id });
@@ -48,9 +54,12 @@ router.delete("/delete", async function (req: Request, res: Response) {
     res.end();
   }
 });
+//mark completed/!completed by id
 router.patch("/patch", async function (req: Request, res: Response) {
   try {
+    //looking for todo by id to get isCompleted Condition
     let todoObj: todoFromDb = await todo.findOne({ _id: req.body.id });
+    //find todo by id and switch isCompleted
     await todo.findOneAndUpdate(
       { _id: req.body.id },
       { $set: { isCompleted: !todoObj.isCompleted } }
@@ -61,6 +70,7 @@ router.patch("/patch", async function (req: Request, res: Response) {
     res.end();
   }
 });
+//updates element order by id
 router.patch("/order_patch", async function (req: Request, res: Response) {
   try {
     await todo.findOneAndUpdate(
@@ -73,6 +83,7 @@ router.patch("/order_patch", async function (req: Request, res: Response) {
     res.end();
   }
 });
+//switch all array`s isCompleted property by condition from front
 router.put("/put", async function (req: Request, res: Response) {
   try {
     await todo.updateMany({}, { $set: { isCompleted: req.body.status } });

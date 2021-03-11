@@ -1,3 +1,4 @@
+//connection to mongo
 export {};
 const mongoose = require("mongoose");
 const mongoConnect = function () {
