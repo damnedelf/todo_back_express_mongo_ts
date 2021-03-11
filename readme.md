@@ -1,6 +1,6 @@
 ## npm start - starts server on localhost:5500 for front part`s queres
 
-## requires mongo-db running locally
+## requires mongod running locally
 
 ## todomvc hometask.
 

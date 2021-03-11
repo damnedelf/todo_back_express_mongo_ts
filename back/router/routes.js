@@ -2,82 +2,79 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 let express = require("express");
 const router = express.Router();
-const bodyParser = require("body-parser");
-const { nanoid } = require("nanoid");
-const mongoose = require("mongoose");
-const todo = require("../models/todo_model");
-let textParser = bodyParser.text();
-let jsonParser = bodyParser.json();
-let urlenParser = bodyParser.urlencoded();
-mongoose.connect("mongodb://localhost/toDoCollection", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-});
-mongoose.connection
-    .once("open", function () {
-    console.log("connection to db is up");
-})
-    .on("error", function (error) {
-    console.log("error>>>>>>", error);
-});
-router.post("/post", jsonParser, function (req, res) {
+const todo = require("../db/models/todo_model");
+let orderN;
+router.post("/post", async function (req, res) {
+    let todoArr = await todo.find({});
+    if (todoArr.length === 0) {
+        orderN = 0;
+    }
+    else {
+        todoArr.sort((a, b) => (a.order > b.order ? 1 : -1));
+        orderN = todoArr[todoArr.length - 1].order;
+    }
+    orderN++;
     let person = new todo({
         name: req.body.name,
-        id: nanoid(),
         isCompleted: false,
+        order: orderN,
     });
     try {
-        let currentTodo = {
-            name: person.name,
-            id: person.id,
-            isCompleted: person.isCompleted,
-        };
-        person.save().then(res.end(JSON.stringify(currentTodo)));
+        let todo = await person.save();
+        res.end(JSON.stringify(todo));
     }
     catch (error) {
-        res.write(`Some error ${error}`);
+        console.log(`response//on post err==>> ${error}`);
+        res.write(`post error ==>${error}`);
         res.end();
     }
 });
-router.get("/getall", function (req, res) {
+router.get("/getall", async function (req, res) {
     try {
-        todo.find({}).then(function (result) {
-            res.end(JSON.stringify(result));
-        });
+        let todoArr = await todo.find({});
+        todoArr.sort((a, b) => (a.order > b.order ? 1 : -1));
+        res.end(JSON.stringify(todoArr));
     }
     catch (error) {
         res.write(`get array from db ${error}`);
         res.end();
     }
 });
-router.delete("/delete", jsonParser, function (req, res) {
+router.delete("/delete", async function (req, res) {
     try {
-        todo.findOneAndRemove({ id: req.body.id }).then(() => res.end());
+        await todo.findOneAndRemove({ _id: req.body.id });
+        res.end();
     }
     catch (error) {
-        res.write(`error ${error}`);
+        res.write(`error delete ${error}`);
         res.end();
     }
 });
-router.patch("/patch", jsonParser, function (req, res) {
+router.patch("/patch", async function (req, res) {
     try {
-        todo.findOne({ id: req.body.id }).then(function (result) {
-            todo
-                .findOneAndUpdate({ id: req.body.id }, { $set: { isCompleted: !result.isCompleted } })
-                .then(() => res.end());
-        });
+        let todoObj = await todo.findOne({ _id: req.body.id });
+        await todo.findOneAndUpdate({ _id: req.body.id }, { $set: { isCompleted: !todoObj.isCompleted } });
+        res.end();
     }
     catch (error) {
-        res.write(`error ${error}`);
+        res.write(`error patch====>>>>${error}`);
         res.end();
     }
 });
-router.put("/put", jsonParser, function (req, res) {
+router.patch("/order_patch", async function (req, res) {
     try {
-        todo
-            .updateMany({}, { $set: { isCompleted: req.body.status } })
-            .then(() => res.end());
+        await todo.findOneAndUpdate({ _id: req.body.id }, { $set: { order: req.body.order } });
+        res.end();
+    }
+    catch (error) {
+        res.write(`error patch====>>>>${error}`);
+        res.end();
+    }
+});
+router.put("/put", async function (req, res) {
+    try {
+        await todo.updateMany({}, { $set: { isCompleted: req.body.status } });
+        res.end();
     }
     catch (error) {
         res.write(`all updated error ${error}`);
@@ -85,4 +82,3 @@ router.put("/put", jsonParser, function (req, res) {
     }
 });
 module.exports = router;
-//# sourceMappingURL=routes.js.map

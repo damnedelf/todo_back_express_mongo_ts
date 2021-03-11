@@ -1,5 +1,7 @@
-interface todoFromMongo {
+interface todoFromDb {
+  _id: object;
   name: string;
-  id: string;
   isCompleted: boolean;
+  order: number;
+  __v: number;
 }
