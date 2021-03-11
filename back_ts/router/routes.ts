@@ -1,3 +1,4 @@
+export {};
 import { Request, Response } from "express";
 let express = require("express");
 const router = express.Router();
