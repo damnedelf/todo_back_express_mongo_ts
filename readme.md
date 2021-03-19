@@ -95,6 +95,13 @@ Make sure u have MongoDB running locally! To get a local copy up and running fol
 
 ## Usage
 
+###Make sure MongoDB is running locally
+To begin work with server u must compile ts files with
+
+```sh
+npm run dev
+```
+
 To work up, u must start server with
 
 ```sh
