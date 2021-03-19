@@ -1,0 +1,15 @@
+"use strict";
+exports.__esModule = true;
+require("dotenv").config();
+var express = require("express");
+var app = express();
+var port = process.env.PORT;
+var router = require("./router/routes");
+var cors = require("cors");
+var bodyParser = require("body-parser");
+var mongoConnect = require("./db/mongo");
+var jsonParser = bodyParser.json();
+app.use(cors());
+app.use("/todo", jsonParser, router);
+app.listen(port, process.env.URL, console.log("server up===>>>>>localhost:" + port + " "));
+mongoConnect();

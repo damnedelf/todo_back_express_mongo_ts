@@ -1,8 +1,10 @@
 export {};
 import { Request, Response } from "express";
 let express = require("express");
-const router = express.Router();
 const todo = require("../db/models/todo_model");
+
+const router = express.Router();
+
 //order for front
 let orderN: number;
 //new todo===>db
