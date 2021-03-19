@@ -4,7 +4,8 @@
   "description": "",
   "main": "back/ap.js",
   "scripts": {
-    "start": "node build/app.js"
+    "start": "node build/app.js",
+    "dev": "tsc"
   },
   "author": "",
   "license": "ISC",

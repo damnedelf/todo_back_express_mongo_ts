@@ -48,7 +48,7 @@
 ## About The Project
 
   <a href="https://github.com/damnedelf/todo_back_express_mongo_ts.git">
-     <img src="assets/img/screenShotProj.png" alt="Logo" width="auto" height="300px">
+
   </a>
 
 **Homework for Intspirit dev_courses. Backend part of todo_app**
@@ -95,8 +95,7 @@ Make sure u have MongoDB running locally! To get a local copy up and running fol
 
 ## Usage
 
-To work with up, u must start backend <a href="https://github.com/damnedelf/todo_back_express_mongo_ts.git">server</a>
-then
+To work up, u must start server with
 
 ```sh
 npm start
