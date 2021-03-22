@@ -4,13 +4,12 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 
 const mongoConnect = function () {
-  let dbConnectUrl: string = "";
-
-  if (process.env.MONGO_LOGIN && process.env.MONGO_PASS) {
-    dbConnectUrl = `mongodb://${process.env.MONGO_LOGIN}:${process.env.MONGO_PASS}@localhost:${process.env.MONGO_PORT}/toDoCollection`;
-  } else {
-    dbConnectUrl = "mongodb://localhost/toDoCollection";
+  let dbConnectUrl: string | undefined = process.env.MONGO_CONNECT_STRING;
+  console.log(dbConnectUrl);
+  if (!dbConnectUrl) {
+    throw Error("Mongo str doesn`t exist");
   }
+
   mongoose.connect(dbConnectUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

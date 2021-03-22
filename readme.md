@@ -102,6 +102,8 @@ To begin work with server u must compile ts files with
 npm run dev
 ```
 
+u must create ur own .env file. Fill it using env_template file, if u want
+
 To work up, u must start server with
 
 ```sh
@@ -109,10 +111,6 @@ npm start
 ```
 
 after dat u can run frontend app in browser
-
-## => make sure, URL and PORT (.env), reqUrl (in frontend`s <config.ts>) are correct, (reqURL must be equal to backend`s 'URL'+':'+'PORT' from .env)
-
-## => make sure, MONGO_PASS amd MONGO_LOGIN are correct (go .env to correct it, they are empty by default)
 
 ## Contact
 

@@ -1,0 +1,16 @@
+
+#=> make sure, URL and PORT (.env), reqUrl (in frontend`s <config.ts>) are correct, (reqURL must be equal to backend`s 'URL'+':'+'PORT' from .env)
+
+#=> make sure, MONGO_PASS amd MONGO_LOGIN are correct
+
+
+URL=<UR URL>                                                                >localhost as default
+PORT=<UR PORT>                                                              >5500 as default
+
+MONGO_LOGIN=<UR LOGIN>                                                      >Empty as default  
+MONGO_PASS=<UR PASS>                                                        >Empty as default
+MONGO_PORT =<UR MONGODB connection PORT>                                    >27017 as default
+MONGO_CONNECT_STRING =<UR CONNECTION TO MONGO URL>                          >"mongodb://localhost/toDoCollection" as default
+
+
+MONGO_CONNECT_STRING must be like this `mongodb://${process.env.MONGO_LOGIN}:${process.env.MONGO_PASS}@localhost:${process.env.MONGO_PORT}/<collectionname>`

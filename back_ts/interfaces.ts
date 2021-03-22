@@ -3,5 +3,8 @@ interface todoFromDb {
   name: string;
   isCompleted: boolean;
   order: number;
-  __v: number;
+}
+
+interface IError extends Error {
+  status: number;
 }
