@@ -1,7 +1,7 @@
 //connection to mongo
 
 require('dotenv').config();
-const mongoose2 = require('mongoose');
+const mongoose = require('mongoose');
 
 const mongoConnect = function () {
   let dbConnectUrl: string | undefined = process.env.MONGO_CONNECT_STRING;
@@ -10,12 +10,12 @@ const mongoConnect = function () {
     throw Error('Mongo str doesn`t exist');
   }
 
-  mongoose2.connect(dbConnectUrl, {
+  mongoose.connect(dbConnectUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
   });
-  mongoose2.connection
+  mongoose.connection
     .once('open', function () {
       console.log('connection to db is up');
     })
@@ -23,4 +23,4 @@ const mongoConnect = function () {
       console.log('error>>>>>>', error);
     });
 };
-module.exports = mongoConnect;
+export default mongoConnect;
