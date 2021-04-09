@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/damnedelf/todo_back_express_mongo_ts">
-    <img src="src/assets/img/logo.png" alt="Logo" width="80" height="80">
+    <img src="assets/img/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">ToDO app</h3>
@@ -95,7 +95,7 @@ After installation u can build bundle and run server
 npm run start
 ```
 
-server is listening 5500 port by default. U can change it by modifying .env 'PORT'
+server is listening localhost:5500 by default. U can change it by modifying .env 'PORT' 'URL'
 <br />
 
 ## Contact
