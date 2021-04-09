@@ -1,27 +1,20 @@
 <br />
 <p align="center">
-  <a href="https://github.com/damnedelf/todo_back_express_mongo_ts.git">
-    <img src="assets/img/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/damnedelf/todo_back_express_mongo_ts">
+    <img src="src/assets/img/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">ToDO app</h3>
 
   <p align="center">
-   back_end part
+   Typescript Front End for todo+mongo
     <br />
-    <a href="https://github.com/damnedelf/todo_back_express_mongo_ts.git"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/damnedelf/todo_back_express_mongo_ts.git">View Demo</a>
-    ·
-    <a href="https://github.com/damnedelf/todo_back_express_mongo_ts.git/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/damnedelf/todo_back_express_mongo_ts.git/issues">Request Feature</a>
+    
   </p>
 </p>
 
-<details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <details open="open">
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -37,22 +30,14 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="https://github.com/damnedelf/todo_back_express_mongo_ts/issues">report bug, any questions</a></li>
   </ol>
 </details>
 
 ## About The Project
 
-  <a href="https://github.com/damnedelf/todo_back_express_mongo_ts.git">
-
-  </a>
-
-**Homework for Intspirit dev_courses. Backend part of todo_app**
-**works with frontend todoapp. Look here, to get it: <a href="https://github.com/damnedelf/todo_front_ts.git">Click</a>**
+**Homework for Intspirit dev_courses. Back end part for todo+mongo**
 
 #### mail: damnedelf@ya.ru
 
@@ -60,71 +45,59 @@
 
 ### Built With
 
-- Typescript Node Express
+- Typescript,Express,Node. Includes webpack for bundling.
 
 ## Getting Started
 
-Make sure u have MongoDB running locally! To get a local copy up and running follow these simple steps.
+To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
+This is an example of how to list things you need to use the software and how to install it.
+
 - npm
   ```sh
-  npm install npm@latest -g
-  ```
-- typescript
-  ```sh
-  npm install -g typescript
-  ``
+  npm install npm@7.5.4
   ```
 
 ### Installation
 
 1. Clone the repo
    ```sh
-     git clone https://github.com/damnedelf/todo_front_ts
+     git clone https://github.com/damnedelf/todo_back_express_mongo_ts.git
    ```
-2. Install NPM packages
+2. GO to project folder
    ```sh
-   npm install
+   cd todo_back_express_mongo_ts
    ```
-3. Compile ts files and sass styles
+3. Install dependency packages
    ```sh
-   npm run dev
+      npm install
    ```
 
 ## Usage
 
-###Make sure MongoDB is running locally
-To begin work with server u must compile ts files with
+After installation u can build bundle and run server
+2 modes are available;
+
+1. Webpack bundles code
+
+   ```sh
+     npm run build:dev
+   ```
+
+   App is bundling in dist folder.
+   <br />
+
+2. Run server
 
 ```sh
-npm run dev
+npm run start
 ```
 
-u must create ur own .env file. Fill it using env_template file, if u want
-
-To work up, u must start server with
-
-```sh
-npm start
-```
-
-after dat u can run frontend app in browser
+server is listening 5500 port by default. U can change it by modifying .env 'PORT'
+<br />
 
 ## Contact
 
 damnedelf@ya.ru - email
-
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/github_username

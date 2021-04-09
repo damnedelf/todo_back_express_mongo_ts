@@ -2,9 +2,10 @@
   "compilerOptions": {
     "module": "commonjs",
     "lib": ["ES6"],
+    "sourceMap": true,
 
     "outDir": "build",
-    "rootDir": "back_ts",
+    "rootDir": "src",
 
     "strict": true,
 
