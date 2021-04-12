@@ -5,11 +5,9 @@ const todo = require('../db/models/todo_model');
 
 const router = express.Router();
 
-//order for front
-let orderN: number;
 //new todo===>db
 router.post(
-  '',
+  '/',
   async function (req: Request, res: Response, next: NextFunction) {
     try {
       // orderN = await todo.find().countDocuments();
@@ -31,7 +29,7 @@ router.post(
 );
 //get all array for onLoad
 router.get(
-  '',
+  '/',
   async function (req: Request, res: Response, next: NextFunction) {
     try {
       let todoArr: todoFromDb[] = await todo.find({}).sort({ order: 1 });
@@ -55,7 +53,18 @@ router.delete(
     }
   }
 );
-//mark completed/!completed by id + update all + order
+
+router.put('/', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await todo.updateMany({}, { $set: { isCompleted: !req.body.condition } });
+
+    res.status(204).end();
+  } catch (error) {
+    console.log(error);
+    next(new Error('access denied'));
+  }
+});
+//mark completed/!completed by id  + order
 router.patch(
   '/:id',
   async function (req: Request, res: Response, next: NextFunction) {
@@ -65,14 +74,6 @@ router.patch(
         await todo.findOneAndUpdate(
           { _id: req.params.id },
           { $set: { order: req.body.order } }
-        );
-
-        res.status(204).end();
-        //if req => mark all
-      } else if (req.body.condition !== null) {
-        await todo.updateMany(
-          {},
-          { $set: { isCompleted: !req.body.condition } }
         );
 
         res.status(204).end();
