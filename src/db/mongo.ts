@@ -1,7 +1,7 @@
 //connection to mongo
-export {};
+
 require('dotenv').config();
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 const mongoConnect = function () {
   let dbConnectUrl: string | undefined = process.env.MONGO_CONNECT_STRING;

@@ -5,6 +5,7 @@
   "main": "back/ap.js",
   "scripts": {
     "start": "node dist/app.js",
+    "nodemon": "nodemon dist/app.js",
     "build:dev": "webpack --progress  --config webpack.dev.js"
   },
   "author": "",
@@ -26,6 +27,7 @@
     "copy-webpack-plugin": "^8.1.0",
     "engine-version": "^1.0.2",
     "file-loader": "^6.2.0",
+    "nodemon": "^2.0.7",
     "source-map-loader": "^2.0.1",
     "sugarss": "^3.0.3",
     "ts-loader": "^8.1.0",
