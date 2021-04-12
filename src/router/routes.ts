@@ -44,10 +44,10 @@ router.get(
 );
 //delete todo by id
 router.delete(
-  '',
+  '/:id',
   async function (req: Request, res: Response, next: NextFunction) {
     try {
-      await todo.findOneAndRemove({ _id: req.body.id });
+      await todo.findOneAndRemove({ _id: req.params.id });
       res.status(204).end();
     } catch (error) {
       console.log(error);
@@ -57,19 +57,19 @@ router.delete(
 );
 //mark completed/!completed by id + update all + order
 router.patch(
-  '',
+  '/:id',
   async function (req: Request, res: Response, next: NextFunction) {
     try {
       //if req  => order
       if (req.body.order !== null && req.body.condition == null) {
         await todo.findOneAndUpdate(
-          { _id: req.body.id },
+          { _id: req.params.id },
           { $set: { order: req.body.order } }
         );
 
         res.status(204).end();
         //if req => mark all
-      } else if (req.body.id == null) {
+      } else if (req.body.condition !== null) {
         await todo.updateMany(
           {},
           { $set: { isCompleted: !req.body.condition } }
@@ -79,11 +79,11 @@ router.patch(
       }
       //if req mark one
       else {
-        let todoObj: todoFromDb = await todo.findOne({ _id: req.body.id });
+        let todoObj: todoFromDb = await todo.findOne({ _id: req.params.id });
 
         //find todo by id and switch isCompleted
         await todo.findOneAndUpdate(
-          { _id: req.body.id },
+          { _id: req.params.id },
           { $set: { isCompleted: !todoObj.isCompleted } }
         );
 
