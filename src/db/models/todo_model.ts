@@ -13,7 +13,7 @@ const TodoSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
-TodoSchema.virtual('id').get(function (this: any) {
+TodoSchema.virtual('id').get(function (this: todoFromDb) {
   return this._id;
 });
 
